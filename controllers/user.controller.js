@@ -33,7 +33,7 @@ router.post('/signup', async (req, res, next) => {
             userCrud.update(data._id, {otp: `${otp}`, otpExpiration: `${otpExpiration}`})
             .then(data => {
                 const token = generateToken(data)
-                verifyMail(data.email, otp)
+                verifyMail(data.email, otp, res)
                 res.status(201).json({
                     status: "true",
                     token: token
@@ -129,7 +129,7 @@ const generateToken = (data) =>{
     return token
 }
 
-const verifyMail = async (email, otp) => {
+const verifyMail = async (email, otp, res) => {
     try{
         let transporter = nodemailer.createTransport({
             service: "Gmail",
@@ -153,9 +153,17 @@ const verifyMail = async (email, otp) => {
             `
             
         })
+        // res.status(200).json({
+        //     status: "true",
+        //     msg:mail
+        // })
         console.log("mail send successfuly: ", info)
     }catch(err){
         console.error("Failed to send mail: ", err);
+        res.status(500).json({
+            status: "false : Mail send failed",
+            msg:err
+        })
     }
 }
 
