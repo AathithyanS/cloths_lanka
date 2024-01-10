@@ -140,7 +140,6 @@ const verifyMail = async (email, otp, res) => {
         })
 
         // console.log(`${process.env.VERIFY_EMAIL}, ${process.env.VERIFY_KEY}`)
-        console.log("mail send successfuly: ")
 
         const info = await transporter.sendMail({
             from: process.env.VERIFY_EMAIL,
@@ -154,10 +153,11 @@ const verifyMail = async (email, otp, res) => {
             `
             
         })
-        res.status(200).json({
-            status: "true",
-            msg:info
-        })
+        console.log(`mail send successfuly: ${info}`)
+        // res.status(200).json({
+        //     status: "true",
+        //     msg:info
+        // })
        
     }catch(err){
         console.error("Failed to send mail: ", err);
