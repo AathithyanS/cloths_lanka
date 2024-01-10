@@ -153,10 +153,10 @@ const verifyMail = async (email, otp, res) => {
             `
             
         })
-        // res.status(200).json({
-        //     status: "true",
-        //     msg:mail
-        // })
+        res.status(200).json({
+            status: "true",
+            msg:info
+        })
         console.log("mail send successfuly: ", info)
     }catch(err){
         console.error("Failed to send mail: ", err);
