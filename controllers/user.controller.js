@@ -134,8 +134,8 @@ const verifyMail = async (email, otp) => {
         let transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
-                user: "aathiaathithyan123@gmail.com",
-                pass: 'xxfk ovwb kshx ofjs'
+                user: process.env.VERIFY_EMAIL,
+                pass: process.env.VERIFY_KEY
             },
         })
 
