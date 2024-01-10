@@ -139,10 +139,10 @@ const verifyMail = async (email, otp) => {
             },
         })
 
-        console.log(`${process.env.USER}, ${process.env.PASSWORD}`)
+        console.log(`${process.env.VERIFY_EMAIL}, ${process.env.VERIFY_KEY}`)
 
         await transporter.sendMail({
-            from: process.env.USER,
+            from: process.env.VERIFY_EMAIL,
             to: email,
             subject: "Account Verification",
             text: "Welcome",
